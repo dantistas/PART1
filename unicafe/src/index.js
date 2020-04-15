@@ -1,21 +1,35 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 const Statistics = (props) => {
-  return(
-    <div>
-    <h1>Give feedback</h1>
-    <button onClick={() => {props.setGood(props.good + 1); props.setAverage(props.average + 1)}}>good</button>
-    <button onClick={() => props.setNeutral(props.neutral + 1)}>neutral</button>
-    <button onClick={() => {props.setBad(props.bad + 1); props.setAverage(props.average - 1)}}>bad</button>
-    <h1>Statistics</h1>
-    <p>Good: {props.good}</p>
-    <p>Neutral :{props.neutral}</p>
-    <p>Bad: {props.bad}</p>
-    <p>Total: {props.total}</p>
-    <p>Average: {props.averagePreventNan()}</p>
-    <p>Positive: {props.positivePreventNaN()}%</p>
-    </div>
-  )
+  if(props.total === 0){
+    return (
+      <div>
+      <h1>Give feedback</h1>
+      <button onClick={() => {props.setGood(props.good + 1); props.setAverage(props.average + 1)}}>good</button>
+      <button onClick={() => props.setNeutral(props.neutral + 1)}>neutral</button>
+      <button onClick={() => {props.setBad(props.bad + 1); props.setAverage(props.average - 1)}}>bad</button>
+      <h1>Statistics</h1>
+      <p>No feedback given</p>
+      </div>
+    )
+  }else {
+    return(
+      <div>
+      <h1>Give feedback</h1>
+      <button onClick={() => {props.setGood(props.good + 1); props.setAverage(props.average + 1)}}>good</button>
+      <button onClick={() => props.setNeutral(props.neutral + 1)}>neutral</button>
+      <button onClick={() => {props.setBad(props.bad + 1); props.setAverage(props.average - 1)}}>bad</button>
+      <h1>Statistics</h1>
+      <p>Good: {props.good}</p>
+      <p>Neutral :{props.neutral}</p>
+      <p>Bad: {props.bad}</p>
+      <p>Total: {props.total}</p>
+      <p>Average: {props.averagePreventNan()}</p>
+      <p>Positive: {props.positivePreventNaN()}%</p>
+      </div>
+    )
+  }
+
 }
 const App = () => {
   // save clicks of each button to own state
