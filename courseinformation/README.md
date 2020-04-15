@@ -1,0 +1,1 @@
+courseinformation app
