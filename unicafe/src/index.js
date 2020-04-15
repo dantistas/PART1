@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom'
 
 const Statistic = (props) => {
   return (
-    <div>
-    <p>{props.text} {props.value}</p>
-    </div>
+        <tr >
+         <td>{props.text}</td>
+         <td>{props.value}</td>
+        </tr>
   )
 }
 const ButtonComponent = (props) =>{
@@ -34,12 +35,16 @@ const Statistics = (props) => {
       <ButtonComponent text="Neutral" onClick={() => props.setNeutral(props.neutral + 1)}/>
       <ButtonComponent text="Bad" onClick={() => {props.setBad(props.bad + 1); props.setAverage(props.average - 1)}}/>
       <h1>Statistics</h1>
-      <Statistic text="Good:" value ={props.good} />
-      <Statistic text="Neutral:" value ={props.neutral} />
-      <Statistic text="Bad:" value ={props.bad} />
-      <Statistic text="Total:" value ={props.total} />
-      <Statistic text="Average:" value ={props.averagePreventNan()} />
-      <Statistic text="Positive:" value ={props.positivePreventNaN()} />
+      <table>
+        <tbody>
+        <Statistic text="Good:" value ={props.good} />
+        <Statistic text="Neutral:" value ={props.neutral} />
+        <Statistic text="Bad:" value ={props.bad} />
+        <Statistic text="Total:" value ={props.total} />
+        <Statistic text="Average:" value ={props.averagePreventNan()} />
+        <Statistic text="Positive:" value ={props.positivePreventNaN()} />
+        </tbody>
+      </table>
       </div>
     )
   }
