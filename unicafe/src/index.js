@@ -1,13 +1,27 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+
+const Statistic = (props) => {
+  return (
+    <div>
+    <p>{props.text} {props.value}</p>
+    </div>
+  )
+}
+const ButtonComponent = (props) =>{
+  return (
+    <button onClick={props.onClick}>{props.text}</button>
+  )
+}
+
 const Statistics = (props) => {
   if(props.total === 0){
     return (
       <div>
       <h1>Give feedback</h1>
-      <button onClick={() => {props.setGood(props.good + 1); props.setAverage(props.average + 1)}}>good</button>
-      <button onClick={() => props.setNeutral(props.neutral + 1)}>neutral</button>
-      <button onClick={() => {props.setBad(props.bad + 1); props.setAverage(props.average - 1)}}>bad</button>
+      <ButtonComponent text="Good" onClick={() => {props.setGood(props.good + 1); props.setAverage(props.average + 1)}}/>
+      <ButtonComponent text="Neutral" onClick={() => props.setNeutral(props.neutral + 1)}/>
+      <ButtonComponent text="Bad" onClick={() => {props.setBad(props.bad + 1); props.setAverage(props.average - 1)}}/>
       <h1>Statistics</h1>
       <p>No feedback given</p>
       </div>
@@ -16,16 +30,16 @@ const Statistics = (props) => {
     return(
       <div>
       <h1>Give feedback</h1>
-      <button onClick={() => {props.setGood(props.good + 1); props.setAverage(props.average + 1)}}>good</button>
-      <button onClick={() => props.setNeutral(props.neutral + 1)}>neutral</button>
-      <button onClick={() => {props.setBad(props.bad + 1); props.setAverage(props.average - 1)}}>bad</button>
+      <ButtonComponent text="Good" onClick={() => {props.setGood(props.good + 1); props.setAverage(props.average + 1)}}/>
+      <ButtonComponent text="Neutral" onClick={() => props.setNeutral(props.neutral + 1)}/>
+      <ButtonComponent text="Bad" onClick={() => {props.setBad(props.bad + 1); props.setAverage(props.average - 1)}}/>
       <h1>Statistics</h1>
-      <p>Good: {props.good}</p>
-      <p>Neutral :{props.neutral}</p>
-      <p>Bad: {props.bad}</p>
-      <p>Total: {props.total}</p>
-      <p>Average: {props.averagePreventNan()}</p>
-      <p>Positive: {props.positivePreventNaN()}%</p>
+      <Statistic text="Good:" value ={props.good} />
+      <Statistic text="Neutral:" value ={props.neutral} />
+      <Statistic text="Bad:" value ={props.bad} />
+      <Statistic text="Total:" value ={props.total} />
+      <Statistic text="Average:" value ={props.averagePreventNan()} />
+      <Statistic text="Positive:" value ={props.positivePreventNaN()} />
       </div>
     )
   }
@@ -47,9 +61,9 @@ const App = () => {
   }
   const positivePreventNaN = () => {
     if(total === 0 ){
-      return 0
+      return 0 + "%"
     }else {
-      return good / total * 100 
+      return good / total * 100 + "%"
     }
   }
 
@@ -58,7 +72,7 @@ const App = () => {
   return (
     <div>
     <Statistics good={good} setGood={setGood} neutral={neutral} setNeutral={setNeutral} bad={bad} setBad={setBad} average={average} setAverage={setAverage}
-     total={total} averagePreventNan={averagePreventNan} positivePreventNaN={positivePreventNaN}></Statistics>
+     total={total} averagePreventNan={averagePreventNan} positivePreventNaN={positivePreventNaN}/>
     </div>
   )
 }
